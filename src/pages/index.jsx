@@ -6,11 +6,11 @@ import PieChart, {ScatterChart, BubbleChart, DoughnutChart, PolarAreaChart, Rada
 export default function Home() {
   const [activeChart, setActiveChart] = useState("");
   const [chartData, setChartData] = useState([
-    { x: 50, y: 7 },
-    { x: 60, y: 8 },
-    { x: 70, y: 9 },
-    { x: 80, y: 6 },
-    { x: 90, y: 5 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
   ]);
 
   const handleSubmit = (e) => {
