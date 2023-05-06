@@ -23,7 +23,7 @@ const labels = chartData.map(ele => ele.x );
     labels: labels,
     datasets: [
       {
-        label: "My First dataset",
+        label: "Piechart",
         backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',

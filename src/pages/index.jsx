@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import LineChart from "@/components/linechart";
 import BarChart from "@/components/barchart";
 import PieChart, {ScatterChart, BubbleChart, DoughnutChart, PolarAreaChart, RadarChart} from "@/components/othercharts";
 
 export default function Home() {
-  const [activeChart, setActiveChart] = useState("");
+  const formRef = useRef();
+  const [activeChart, setActiveChart] = useState("linechart");
   const [chartData, setChartData] = useState([
     { x: 0, y: 0 },
     { x: 0, y: 0 },
@@ -24,6 +25,20 @@ export default function Home() {
     ])
   };
 
+
+  const handleReset = () => {
+    setChartData([
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+    ]);
+    setActiveChart("linechart");
+    formRef.current.reset();
+    console.log(chartData)
+  }
+
   return (
     <>
       <div className="main">
@@ -33,20 +48,24 @@ export default function Home() {
         </div>
         <div className="grid">
           <div className="item1">
-            <form action="" onSubmit={(e) => handleSubmit(e)}>
+            <form action="" ref={formRef} onSubmit={(e) => handleSubmit(e)}>
               <div className="x-axis-values">x - values 
-                <input type="number" name="x1" required />
-                <input type="number" name="x2" required />
-                <input type="number" name="x3" required />
-                <input type="number" name="x4" required />
-                <input type="number" name="x5" required />
+                {
+                  chartData.map((item, id) => {
+                    return (
+                      <input key={id} type="number" name={`x${id+1}`} value={chartData.x} required />
+                    )
+                  })
+                }
               </div>
               <div className="y-axis-values"> y - values 
-              <input type="number" name="y1" required  />
-              <input type="number" name="y2" required  />
-              <input type="number" name="y3" required  />
-              <input type="number" name="y4" required  />
-              <input type="number" name="y5" required  />
+              {
+                chartData.map((item, id) => {
+                    return (
+                      <input key={id} type="number" name={`y${id+1}`} value={chartData.y} required />
+                    )
+                  })
+              }
               </div>
               <input type="submit" className="submit-btn" value="Submit" />
             </form>
@@ -82,7 +101,7 @@ export default function Home() {
               <button onClick={() => setActiveChart("polar")}>
                 Polar Area chart
               </button>
-              <button className="reset" onClick={() => setActiveChart("")}>Reset</button>
+              <button className="reset" onClick={handleReset}>Reset</button>
             </div>
           </div>
         </div>

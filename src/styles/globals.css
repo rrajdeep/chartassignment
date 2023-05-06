@@ -46,6 +46,9 @@ form {
 .item2 {
   grid-area: item2;
   width: 0.8fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .item2.chart {
@@ -87,4 +90,12 @@ button.reset {
 
 button.reset:hover {
   background-color: #d62828;
+}
+
+.chartDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 480px;
+  height: 480px;
 }
