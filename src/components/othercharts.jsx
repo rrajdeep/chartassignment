@@ -60,7 +60,7 @@ export const ScatterChart = ({chartData}) => {
       {
         label: "Scatter chart",
         backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(0,0,255)",
+        borderColor: "rgb(236, 24, 70)",
         data: chartData.map(ele => ele.y),
       },
     ],
