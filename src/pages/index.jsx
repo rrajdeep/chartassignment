@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef} from "react";
 import LineChart from "@/components/linechart";
 import BarChart from "@/components/barchart";
 import PieChart, {ScatterChart, BubbleChart, DoughnutChart, PolarAreaChart, RadarChart} from "@/components/othercharts";
 
 export default function Home() {
   const formRef = useRef();
-  const [activeChart, setActiveChart] = useState("linechart");
+  const [activeChart, setActiveChart] = useState("");
+  const [buttonState, setButtonState] = useState(true);
   const [chartData, setChartData] = useState([
     { x: 0, y: 0 },
     { x: 0, y: 0 },
@@ -23,6 +24,8 @@ export default function Home() {
       {x:e.target[3].value , y: e.target[8].value},
       {x:e.target[4].value , y: e.target[9].value},
     ])
+    setButtonState(false);
+    setActiveChart("linechart")
   };
 
 
@@ -34,16 +37,15 @@ export default function Home() {
       { x: 0, y: 0 },
       { x: 0, y: 0 },
     ]);
-    setActiveChart("linechart");
+    setActiveChart("");
     formRef.current.reset();
-    console.log(chartData)
   }
 
   return (
     <>
       <div className="main">
         <div className="intro">
-          <h3>Demo Chart Assignment</h3>
+          <h3>Demo Charts</h3>
           <p>Please enter the <b>x - axis</b> and <b>y - axis</b> values </p>
         </div>
         <div className="grid">
@@ -83,22 +85,22 @@ export default function Home() {
           </div>
           <div className="item3">
             <div className="chart-buttons">
-              <button onClick={() => setActiveChart("linechart")}>
+              <button onClick={() => setActiveChart("linechart")} disabled={buttonState}>
                 Line chart
               </button>
-              <button onClick={() => setActiveChart("barchart")}>
+              <button onClick={() => setActiveChart("barchart")} disabled={buttonState}>
                 Bar chart
               </button>
-              <button onClick={() => setActiveChart("piechart")}>
+              <button onClick={() => setActiveChart("piechart")} disabled={buttonState}>
                 Pie chart
               </button>
-              <button onClick={() => setActiveChart("scatter")}>
+              <button onClick={() => setActiveChart("scatter")} disabled={buttonState}>
                 Scatter chart
               </button>
-              <button onClick={() => setActiveChart("doughnut")}>
+              <button onClick={() => setActiveChart("doughnut")} disabled={buttonState}>
                 Doughnut chart
               </button>
-              <button onClick={() => setActiveChart("polar")}>
+              <button onClick={() => setActiveChart("polar")} disabled={buttonState}>
                 Polar Area chart
               </button>
               <button className="reset" onClick={handleReset}>Reset</button>
@@ -109,5 +111,3 @@ export default function Home() {
     </>
   );
 }
-
-
