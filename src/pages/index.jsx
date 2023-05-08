@@ -1,7 +1,7 @@
 import React, { useState, useRef} from "react";
 import LineChart from "@/components/linechart";
 import BarChart from "@/components/barchart";
-import PieChart, {ScatterChart, BubbleChart, DoughnutChart, PolarAreaChart, RadarChart} from "@/components/othercharts";
+import PieChart, {ScatterChart, BubbleChart, DoughnutChart, PolarAreaChart} from "@/components/othercharts";
 
 export default function Home() {
   const formRef = useRef();
