@@ -2,10 +2,8 @@ import React from "react";
 import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 import { Scatter } from "react-chartjs-2";
-import { Bubble } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
 import { PolarArea } from "react-chartjs-2";
-import { Radar } from "react-chartjs-2";
 import {
     Chart as ChartJS,
     RadialLinearScale,
@@ -14,10 +12,9 @@ import {
     Legend,
   } from "chart.js"
 
-  ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
+ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
 const PieChart = ({chartData}) => {
-//   const labels = ["January", "February", "March", "April", "May", "June"];
 const labels = chartData.map(ele => ele.x );
   const data = {
     labels: labels,
@@ -44,9 +41,21 @@ const labels = chartData.map(ele => ele.x );
       },
     ],
   };
+
+  const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Pie Chart",
+        align: "center",
+      },
+    },
+  };
+
+
   return (
     <div>
-      <Pie data={data} />
+      <Pie options={options} data={data} />
     </div>
   );
 };
@@ -58,38 +67,30 @@ export const ScatterChart = ({chartData}) => {
     labels: labels,
     datasets: [
       {
-        label: "Scatter chart",
+        label: "x values",
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgb(236, 24, 70)",
         data: chartData.map(ele => ele.y),
       },
     ],
   };
+
+  const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Scatter Chart",
+        align: "center",
+      },
+    },
+  };
+
   return (
     <div>
-        <Scatter data={data} />
+        <Scatter options={options} data={data} />
     </div>
   )
 };
-
-export const BubbleChart = ({chartData}) => {
-    const labels = chartData.map(ele => ele.x );
-    const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: "Bubble Chart",
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(0,0,255)",
-          data: chartData.map(ele => ele.y),
-        },
-      ],
-    };
-    return (
-        <Bubble data={data} /> 
-    )
-}
-
 
 export const DoughnutChart = ({chartData}) => {
     const labels = chartData.map(ele => ele.x );
@@ -118,9 +119,21 @@ export const DoughnutChart = ({chartData}) => {
         },
       ],
     };
+
+
+    const options = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Doughnut Chart",
+          align: "center",
+        },
+      },
+    };
+    
     return (
         <div>
-            <Doughnut data={data} />
+            <Doughnut options={options} data={data} />
         </div>
     )
 }
@@ -144,29 +157,20 @@ export const PolarAreaChart = ({chartData}) => {
         },
       ],
     };
-    return (
-        <div>
-            <PolarArea data={data} />
-        </div>
-    )
-}
 
-export const RadarChart = ({chartData}) => {
-    const labels = chartData.map(ele => ele.x );
-    const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: "Radar Chart",
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(0,0,255)",
-          data: chartData.map(ele => ele.y),
+    const options = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Polar Area Chart",
+          align: "center",
         },
-      ],
+      },
     };
+
     return (
         <div>
-            <Radar data={data} />
+            <PolarArea options={options} data={data} />
         </div>
     )
 }
